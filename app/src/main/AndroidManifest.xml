@@ -14,6 +14,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.miwok">
 
     <application
@@ -29,10 +30,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PhrasesActivity" />
-        <activity android:name=".NumbersActivity" />
-        <activity android:name=".FamilyActivity" />
-        <activity android:name=".ColorsActivity"></activity>
+        <activity
+            android:name=".PhrasesActivity"
+            android:label="@string/category_phrases"
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name=".NumbersActivity"
+            android:label="@string/category_numbers"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FamilyActivity"
+            android:label="@string/category_family"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ColorsActivity"
+            android:label="@string/category_colors"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
