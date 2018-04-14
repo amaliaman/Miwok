@@ -9,6 +9,7 @@ public class Word {
 
     private String mDefaultTranslation;
     private String mMiwokTranslation;
+    private int mImageResourceId;
 
     /**
      * Constructor - Word class
@@ -16,7 +17,7 @@ public class Word {
      * @param defaultTranslation default translation
      * @param miwokTranslation   Miwok translation
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    Word(String defaultTranslation, String miwokTranslation) {
         this.mDefaultTranslation = defaultTranslation;
         this.mMiwokTranslation = miwokTranslation;
     }
@@ -29,10 +30,17 @@ public class Word {
     }
 
     /**
-     * @return Miwok traslation
+     * @return Miwok translation
      */
     public String getMiwokTranslation() {
         return mMiwokTranslation;
+    }
+
+    /**
+     * @return image reource ID
+     */
+    public int getImageResourceId() {
+        return mImageResourceId;
     }
 
     @Override
