@@ -9,7 +9,9 @@ public class Word {
 
     private String mDefaultTranslation;
     private String mMiwokTranslation;
-    private int mImageResourceId;
+    private int mImageResourceId = NO_IMAGE_RESOURCE;
+
+    private static final int NO_IMAGE_RESOURCE = -1;
 
     /**
      * Constructor - Word class
@@ -20,6 +22,19 @@ public class Word {
     Word(String defaultTranslation, String miwokTranslation) {
         this.mDefaultTranslation = defaultTranslation;
         this.mMiwokTranslation = miwokTranslation;
+    }
+
+    /**
+     * Constructor with image resource ID
+     *
+     * @param defaultTranslation default translation
+     * @param miwokTranslation   Miwok translation
+     * @param imageResourceId    image resource ID
+     */
+    Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
+        this.mDefaultTranslation = defaultTranslation;
+        this.mMiwokTranslation = miwokTranslation;
+        this.mImageResourceId = imageResourceId;
     }
 
     /**
@@ -37,7 +52,7 @@ public class Word {
     }
 
     /**
-     * @return image reource ID
+     * @return image resource ID
      */
     public int getImageResourceId() {
         return mImageResourceId;
@@ -46,5 +61,12 @@ public class Word {
     @Override
     public String toString() {
         return mDefaultTranslation + " - " + mMiwokTranslation;
+    }
+
+    /**
+     * @return whether this word has an image or not
+     */
+    public boolean hasImage() {
+        return mImageResourceId != NO_IMAGE_RESOURCE;
     }
 }

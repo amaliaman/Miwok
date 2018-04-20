@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:layout_height="wrap_content"
+    style="@style/ListItem">
 
     <ImageView
         android:id="@+id/word_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:src="@mipmap/ic_launcher" />
+        style="@style/WordImage"
+        tools:src="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:id="@+id/word_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_padding"
+        android:paddingStart="@dimen/activity_padding"
+        tools:ignore="RtlSymmetry"
+        tools:background="@color/category_numbers">
 
         <TextView
             android:id="@+id/miwok_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/main_text"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold"
             tools:text="lutti" />
 
         <TextView
             android:id="@+id/default_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/main_text"
+            android:textSize="@dimen/text_size"
             tools:text="one" />
     </LinearLayout>
 </LinearLayout>
