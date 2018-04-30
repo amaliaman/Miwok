@@ -1,18 +1,25 @@
 package com.example.android.miwok;
 
-import android.annotation.TargetApi;
+
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ColorsActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ColorsFragment extends Fragment {
 
     private MediaPlayer mMediaPlayer;
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
@@ -40,13 +47,19 @@ public class ColorsActivity extends AppCompatActivity {
                 }
             };
 
-    @TargetApi(Build.VERSION_CODES.M)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+    public ColorsFragment() {
+        // Required empty public constructor
+    }
 
-        mAudioManager = getSystemService(AudioManager.class);
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.word_list, container, false);
+
+
+        mAudioManager = getActivity().getSystemService(AudioManager.class);
 
         final ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("red", "weṭeṭṭi", R.drawable.color_red, R.raw.color_red));
@@ -58,8 +71,8 @@ public class ColorsActivity extends AppCompatActivity {
         words.add(new Word("black", "kululli", R.drawable.color_black, R.raw.color_black));
         words.add(new Word("white", "kelelli", R.drawable.color_white, R.raw.color_white));
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_colors);
-        ListView listView = findViewById(R.id.list);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.category_colors);
+        ListView listView = rootView.findViewById(R.id.list);
         if (listView != null) {
             listView.setAdapter(itemsAdapter);
             listView.setOnItemClickListener(new ListView.OnItemClickListener() {
@@ -68,7 +81,7 @@ public class ColorsActivity extends AppCompatActivity {
                     releaseMediaPlayer();
                     int result = mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                     if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                        mMediaPlayer = MediaPlayer.create(ColorsActivity.this, words.get(position).getAudioResourceId());
+                        mMediaPlayer = MediaPlayer.create(getActivity(), words.get(position).getAudioResourceId());
                         mMediaPlayer.start();
                         if (mMediaPlayer != null) {
                             mMediaPlayer.setOnCompletionListener(onCompletionListener);
@@ -77,6 +90,7 @@ public class ColorsActivity extends AppCompatActivity {
                 }
             });
         }
+        return rootView;
     }
 
     /**
@@ -98,7 +112,7 @@ public class ColorsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }

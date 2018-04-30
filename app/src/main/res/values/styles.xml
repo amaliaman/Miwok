@@ -43,5 +43,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/tan_background</item>
     </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabBackground">@color/primary_color</item>
+    </style>
 </resources>
 
